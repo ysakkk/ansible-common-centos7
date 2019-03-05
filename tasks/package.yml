@@ -1,0 +1,14 @@
+- name: install service packages
+  yum: 
+    name:
+      - "postfix  "
+      - "rsync"
+      - "git"
+      - "bind-utils"
+      - "sysstat"
+      - "dstat"
+      - "wget"
+      - "openssl"
+      - "nkf"
+      - "net-tools"
+      - "yum-utils"

@@ -1,0 +1,12 @@
+- name: set timezone 
+  shell: timedatectl set-timezone {{ zone }} 
+  register: set_timezone  
+  changed_when: false  
+  check_mode: no
+
+- name: set loclale 
+  shell: localectl set-locale LANG={{ locale }} 
+  register: set_locale
+  changed_when: false  
+  check_mode: no
+

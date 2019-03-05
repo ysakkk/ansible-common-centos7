@@ -1,0 +1,14 @@
+galaxy_info:
+  author: yoshiaki takeshita
+  description: common setup for centos7
+  license: BSD
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: EL
+      versions:
+        - 7
+
+  galaxy_tags:
+    - system
+    - centos7
