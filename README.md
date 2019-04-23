@@ -7,23 +7,17 @@ Role Name
 * disable selinux
 * disable firewalld
 * setup sysstat
-* stop noise rsyslogd
 
 * set timezone, locale
   localectl set-timezone
   localectl set-locale
 
 * package install:
-      - "rsync"
+      - "bash-completion"
       - "git"
       - "bind-utils"
       - "sysstat"
       - "dstat"
-      - "wget"
-      - "openssl"
-      - "nkf"
-      - "net-tools"
-      - "yum-utils"
 
 * history setting
   /etc/profile.d/history.sh
@@ -53,5 +47,5 @@ Example Playbook
       vars:
         zone: UTC
       roles:
-         - common
+         - ansible-common-centos7
 

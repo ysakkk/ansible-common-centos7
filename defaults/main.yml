@@ -1,2 +1,9 @@
 locale: ja_JP.UTF-8
 zone: Asia/Tokyo
+
+packages: 
+  - "bash-completion"
+  - "git"
+  - "bind-utils"
+  - "sysstat"
+  - "dstat"

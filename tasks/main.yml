@@ -1,3 +1,37 @@
-- import_tasks: locale.yml
-- import_tasks: package.yml
-- import_tasks: system.yml
+- name: install service packages
+  yum:
+    name:
+      - "{{ item }}"
+  with_items: "{{ packages }}"
+
+- name: "disable selinux"
+  selinux:
+    state: "disabled"
+
+- name: "/etc/cron.d/sysstat"
+  copy:
+    src: "sysstat"
+    dest: "/etc/cron.d/sysstat"
+
+- name: "disable service firewalld"
+  systemd:
+    name: "firewalld"
+    state: "stopped"
+    enabled: "no"
+
+- name: "history size, format"
+  copy:
+    src: history.sh
+    dest: /etc/profile.d/history.sh
+
+- name: set timezone
+  shell: timedatectl set-timezone {{ zone }}
+  register: set_timezone
+  changed_when: false
+  check_mode: no
+
+- name: set loclale
+  shell: localectl set-locale LANG={{ locale }}
+  register: set_locale
+  changed_when: false
+  check_mode: no
