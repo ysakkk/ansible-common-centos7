@@ -4,31 +4,30 @@
       - "{{ item }}"
   with_items: "{{ packages }}"
 
-- name: "is selinux already installed"
-  shell: rpm -q selinux-policy
+- name: "check selinux installed"
+  stat:
+    path: "/usr/sbin/getenforce"
   register: selinux
-  failed_when: selinux.rc not in [0, 1]
 - name: "disable selinux"
   selinux:
     state: "disabled"
-  when: selinux.rc == 0
+  when: selinux.stat.exists
 
 - name: "/etc/cron.d/sysstat"
   copy:
     src: "sysstat"
     dest: "/etc/cron.d/sysstat"
 
-- name: "check if firewalld is running"
-  command: systemctl is-active firewalld
-  register: firewalld_result
-  changed_when: False
-  failed_when: firewalld_result.rc not in [0, 3]
+- name: "check firewalld installed"
+  stat:
+    path: "/usr/bin/firewall-cmd"
+  register: "firewalld"
 - name: "disable service firewalld"
   systemd:
     name: "firewalld"
     state: "stopped"
     enabled: "no"
-  when: firewalld_result.stdout == "active"
+  when: firewalld.stat.exists
 
 - name: "history size, format"
   copy:
