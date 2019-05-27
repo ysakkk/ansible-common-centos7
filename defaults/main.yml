@@ -1,5 +1,7 @@
 locale: ja_JP.UTF-8
 zone: Asia/Tokyo
+localedef_lang: UTF-8
+localedef_symbol: ja_JP
 
 packages: 
   - "bash-completion"

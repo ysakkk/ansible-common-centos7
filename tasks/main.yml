@@ -40,6 +40,10 @@
   changed_when: false
   check_mode: no
 
+- name: "localedef {{ locale }}"
+  shell: localedef -f "{{ localedef_lang }}" -i "{{ localedef_symbol }}" "{{ localedef_symbol }}" 
+  changed_when: false
+
 - name: set loclale
   shell: localectl set-locale LANG={{ locale }}
   register: set_locale
