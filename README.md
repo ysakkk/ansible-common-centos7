@@ -18,6 +18,7 @@ Role Name
       - "bind-utils"
       - "sysstat"
       - "dstat"
+      - "nc"
 
 * history setting
   /etc/profile.d/history.sh
